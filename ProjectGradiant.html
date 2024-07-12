@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-top: 200px;
+        background-image: linear-gradient(
+          to right,
+          rgb(198, 84, 254),
+          rgb(164, 40, 84)
+        );
+      }
+      button {
+        width: 150px;
+        height: 40px;
+        border: 1px solid gray;
+        border-radius: 25px;
+        margin: 10px;
+      }
+      #myButton {
+        background-color: rgb(14, 17, 19);
+        color: #fff;
+      }
+      .button :hover {
+        box-shadow: 0 12px 19px 0 rgba(0, 0, 0, 0.24),
+          0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      }
+      #myButton2 {
+        background-color: rgb(110, 181, 225);
+        color: #111;
+      }
+      h2 {
+        color: white;
+        font-size: small;
+        font-weight: 100;
+        margin: 25px;
+      }
+      .copycode {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-size: 1rem;
+        width: 60%;
+        margin: 0 auto;
+        display: block;
+        line-height: 1.4;
+        letter-spacing: 0.2px;
+        border-left: 3px solid #fff;
+        background-color: rgba(231, 228, 228, 0.1);
+        border-radius: 6px;
+        padding: 10px 8px 10px 17px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="button">
+        <button id="myButton">#051937</button>
+        <button id="myButton2">#008793</button>
+      </div>
+      <h2>Copy your code here</h2>
+      <div class="copycode">
+        background-image:linear-gradient(to
+        right,rgb(198,84,254),rgb(164,40,84))
+      </div>
+    </section>
+    <script>
+      let btn1 = document.getElementById("myButton");
+      let btn2 = document.getElementById("myButton2");
+      let code = document.querySelector(".copycode");
+      let rgb1 = "#c654fe";
+      let rgb2 = "#a42856 ";
+
+      //in this: 0123456789abcdef so store in some variable
+      //let myHexaValues = "0123456789abcdef";
+
+      const hexvalues = () => {
+        //generate 6 digit hex color with prefix #
+        // i want 6 digit
+        let myHexValues = "0123456789abcdef";
+        let colors = "#";
+        // console.log(myHexValues[11]);//b  // for understand
+        for (let i = 0; i < 6; i++) {
+          //   console.log(myHexValues[Math.floor(Math.random() * 16)]);
+          colors = colors + myHexValues[Math.floor(Math.random() * 16)];
+        }
+        // console.log(colors);
+        return colors;
+      };
+
+      const handleButton1 = () => {
+        rgb1 = hexvalues();
+        console.log(rgb1);
+        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
+        code.textContent = `background-image:linear-gradient(
+          to right,
+          ${rgb1},
+          ${rgb2}
+        );`;
+        btn1.textContent = rgb1;
+        btn1.style.backgroundColor = rgb1;
+      };
+
+      const handleButton2 = () => {
+        //generate 6 digit hex color with prefix #
+        rgb2 = hexvalues();
+        console.log(rgb2);
+        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
+        code.textContent = `background-image:linear-gradient(
+          to right,
+          ${rgb1}
+          ${rgb2}
+        );`;
+        btn2.textContent = rgb2;
+        btn2.style.backgroundColor = rgb2;
+      };
+
+      btn1.addEventListener("click", handleButton1);
+      btn2.addEventListener("click", handleButton2);
+
+      code.addEventListener("click", () => {
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(code.innerHTML);
+        alert("Copied the colorcode 👍🏻");
+      });
+    </script>
+  </body>
+</html>

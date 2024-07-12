@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      h1 {
+        color: white;
+        margin-left: 180px;
+        font-size: 40px;
+      }
+      h1:hover {
+        color: rgb(71, 138, 164);
+      }
+      button {
+        background-color: rgb(71, 138, 164);
+        color: aliceblue;
+        width: 100px;
+        height: 50px;
+        border-radius: 20px;
+      }
+      button:hover {
+        background-color: rgb(164, 191, 210);
+      }
+      input {
+        padding: 10px;
+        border-radius: 4px;
+        margin: 15px;
+        width: 400px;
+        font-size: 25px;
+      }
+      .todolistelem {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <form>
+        <h1>Todo List</h1>
+        <div class="todo_div">
+          <input type="text" id="text" placeholder="write your todo" />
+          <button class="add_todo">Add Todo</button>
+        </div>
+        <div class="todolist">
+          <div>
+            <li></li>
+            <button class="delete">Delete</button>
+          </div>
+        </div>
+      </form>
+    </section>
+    <script>
+      let inputelem = document.getElementById("text");
+      let btn = document.querySelector(".add_todo");
+      let todoelem = document.querySelector(".todolistelem");
+      // let deletebtn = document.querySelector(".delete");
+
+      const handlebutton = (e) => {
+        e.preventDefault();
+        console.log(inputelem.value);
+        const newelem = document.createElement("div");
+        newelem.classList.add("main_todo_div");
+        newelem.textContent = `<li>${inputelem.value} </li><button class="deleteBtn">Delete</button>`;
+        todoelem.append(newelem);
+        inputelem.value = " ";
+      };
+
+      //   inputelem.addEventListener("input", handleinput);
+
+      btn.addEventListener("click", handlebutton);
+      todoelem.addEventListener("click", () => {
+        const removeelem = event.target;
+        removeelem.remove();
+      });
+    </script>
+  </body>
+</html>
+
+<!-- //whenever i work with form the form direct value is not got console or print i
+prevent // the event listener and also as parameter and also write in function
+e.preventDefault() -->
